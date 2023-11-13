@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+require "bundler/setup"
+require "dry/cli"
+require_relative "./shipper"
+
+module ArtShop
+  module CLI
+    module Commands
+      extend Dry::CLI::Registry
+
+      class Ship < Dry::CLI::Command
+        desc "Run shipments script"
+
+        option :test, type: :boolean, default: false, desc: "Run in test mode"
+
+        def call(**options)
+          ArtShop::Scripts.ship(test: options.fetch(:test))
+        end
+      end
+
+      register "ship", Ship
+    end
+  end
+end
+
+Dry::CLI.new(ArtShop::CLI::Commands).call

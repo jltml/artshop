@@ -1,0 +1,11 @@
+# Ignore bundler config.
+/.bundle
+
+# dotenv environment variables file
+.env
+
+# Mac files
+.DS_Store
+
+# Homebrew
+Brewfile.lock.json
