@@ -2,11 +2,20 @@
 require "bundler/setup"
 require "dry/cli"
 require_relative "./../lib/shipper"
+require_relative "./../lib/version"
 
 module ArtShop
   module CLI
     module Commands
       extend Dry::CLI::Registry
+
+      class Version < Dry::CLI::Command
+        desc "Print version"
+
+        def call(*)
+          puts "artshop #{ArtShop::VERSION}"
+        end
+      end
 
       class Ship < Dry::CLI::Command
         desc "Run shipments script"
@@ -18,6 +27,7 @@ module ArtShop
         end
       end
 
+      register "version", Version, aliases: ["v", "-v", "--version"]
       register "ship", Ship
     end
   end
