@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require "bundler/setup"
 require "dry/cli"
-require_relative "./shipper"
+require_relative "./../lib/shipper"
 
 module ArtShop
   module CLI
