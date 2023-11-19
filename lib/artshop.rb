@@ -1,10 +1,12 @@
-#!/usr/bin/env ruby
 require "bundler/setup"
 require "dry/cli"
-require_relative "./../lib/shipper"
-require_relative "./../lib/version"
+require "os"
+require_relative "artshop/shipper"
+require_relative "artshop/version"
 
 module ArtShop
+  class Error < StandardError; end
+
   module CLI
     module Commands
       extend Dry::CLI::Registry
@@ -14,6 +16,12 @@ module ArtShop
 
         def call(*)
           puts "artshop #{ArtShop::VERSION}"
+          begin
+            puts OS.report
+            puts "ruby_bin: #{OS.ruby_bin}"
+          rescue
+            nil
+          end
         end
       end
 
@@ -32,5 +40,3 @@ module ArtShop
     end
   end
 end
-
-Dry::CLI.new(ArtShop::CLI::Commands).call

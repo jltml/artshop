@@ -1,11 +1,14 @@
-# Ignore bundler config.
-/.bundle
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
 
-# dotenv environment variables file
+.rspec_status
 .env
-
-# Mac files
 .DS_Store
-
-# Homebrew
 Brewfile.lock.json
+/pkg
